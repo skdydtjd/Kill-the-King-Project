@@ -19,6 +19,7 @@ public class KilltheKing : MonoBehaviour
     static public KilltheKing S;
     static public PlayerKilltheKing CURRENT_PLAYER;
 
+    // 카드 패 총합 변수
     public int total1 = 0;
     public int total2 = 0;
 
@@ -26,6 +27,7 @@ public class KilltheKing : MonoBehaviour
     public Text playerTotal;
     public Text AITotal;
 
+    // 포인트 변수
     public static int Point1 = 100;
     public static int Point2 = 100;
 
@@ -58,7 +60,7 @@ public class KilltheKing : MonoBehaviour
 
     public List<PlayerKilltheKing> players;
 
-    // 타켓이 하나였으나 여기선 2개이므로 list로 바꿈
+    // 타켓이 하나였으나 여기선 AI, 플레이어 각각 2개이므로 list로 바꿈
     public List<CardKilltheKing> targetCards;
 
     public TurnPhase phase = TurnPhase.idle;
@@ -71,6 +73,7 @@ public class KilltheKing : MonoBehaviour
         S = this;
     }
 
+    // 선언한 변수들 초기화
     void Start()
     {
         deck = GetComponent<Deck>();
@@ -141,28 +144,45 @@ public class KilltheKing : MonoBehaviour
             player.playerNum = tSD.player;
         }
 
+        // 플레이어
         players[0].type = Playertype.human;
 
         CardKilltheKing tCB;
 
+        // 초기 배분되어질 카드 덱들의 수 변경
         for (int i = 0; i < numStartingCards; i++)
         {
+            // 기존 4인 이던 것을 AI, 플레이어로 2인 변경
             for (int j = 0; j < 2; j++)
             {
                 tCB = Draw();
                 tCB.timeStart = Time.time + drawTimeStagger * (i * 2 + j);
                 players[j].AddCard(tCB);
 
-                if (j == 0)
+                // AI, 플레이어의 각 덱 총합 계산
+                if (j == 0) // 플레이어
                 {
                     total1 += players[0].hand[i].rank;
                 }
-                else if (j == 1)
+                else if (j == 1) // AI
                 {
                     total2 += players[1].hand[i].rank;
                 }
+
+                // Bartok에서 첫 Target카드까지 배치한 후 세팅이 끝났음을 알리는 DrawFirstTarget이라는 함수를 이용하여 reportFinishTo를 호출하였는데 
+                // 여기선 첫 타겟이 없이 분배 후 바로 시작해도 상관없으므로 제거
+                
+                // (reportFinishTo를 for문 안에 넣고 AI를 먼저 턴을 잡아 행동하게 할 경우 세팅 도중 턴을 빠르게 넘겨버림)
+                // (따라서 카드가 덱에 완전히 들어오기 전에 target으로 보내려는 충돌이 일어나 버그가 생기게 된다.)
+                // (플레이어를 먼저 턴을 잡게 해줌으로서 해결)
+
+                // 이에 따라 AI의 target으로 보내는 함수를 딜레이를 주어 늦게 실행되게 하는 방법도 있을 수 있으나 플레이어의 경우 카드를 클릭하기 전까지 대기하니 
+                // 플레이어가 먼저 하게 바꿔주는 방법이 더 간편하다 생각하여 플레이어부터 시작하게 바꿔줌
+
             }
         }
+
+        // 효과음 재생
         clip1.PlayDelayed(0.4f);
 
         Invoke("StartCardChange", 2f);
@@ -179,7 +199,7 @@ public class KilltheKing : MonoBehaviour
         {
             players[0].PlayerCardChanging();
         }
-        else
+        else // 합이 같을 경우 바로 게임 진행
         {
             StartGame();
         }
@@ -193,6 +213,7 @@ public class KilltheKing : MonoBehaviour
 
     public void StartGame()
     {
+        // 플레이어부터 시작할 수 있도록 인자값 변경
         PassTurn(0);
     }
 
@@ -201,6 +222,10 @@ public class KilltheKing : MonoBehaviour
         if (num == -1)
         {
             int ndx = players.IndexOf(CURRENT_PLAYER);
+
+            // PassTurn 함수에서는 기존에 4인이니 1~4로 인덱스 넘버를 주던 것을 2인으로 바꿔주었음
+            // num = (ndx +1) % 4  ---> num = (ndx + 1) % 2 로 바꿈
+
             num = (ndx + 1) % 2;
         }
 
@@ -278,6 +303,10 @@ public class KilltheKing : MonoBehaviour
         return standard;
     }
 
+    // AI가 카드 선택할 시 조건 함수
+    // (카드 덱 중 A카드와 가장 높은 카드가 둘 다 있을 경우 랜덤으로 A 또는 가장 높은 카드 중 선택함)
+    // (제일 높은 카드가 문양 별로 2~4개 가 있을 경우엔 그 카드들 중 가장 먼저 읽어들이게 되는 카드를 선택) - 추후 StrongNumber를 활용하여 진짜 가장 높은 카드를 선택할 수 있게 할 수 있음
+    // (위의 상황을 종합하여 A카드와 높은 카드가 여러 개 있을 경우에도 A카드와 높은 카드 중 랜덤 선택)
     public bool ValidPlay(CardKilltheKing cardKilltheKing)
     {
         if (cardKilltheKing.rank == 1)
@@ -293,6 +322,7 @@ public class KilltheKing : MonoBehaviour
         return false;
     }
 
+    // 플레이어가 선택한 카드 이동
     public CardKilltheKing TargettoHuman(CardKilltheKing tCB)
     {
         tCB.timeStart = 0;
@@ -308,6 +338,7 @@ public class KilltheKing : MonoBehaviour
         return tCB;
     }
 
+    // AI가 선택한 카드 이동
     public CardKilltheKing TargettoAi(CardKilltheKing tCB)
     {
         tCB.timeStart = 0;
@@ -368,11 +399,12 @@ public class KilltheKing : MonoBehaviour
 
     public void CardClicked(CardKilltheKing tCB)
     {
-        // 있어도 전혀 쓰이는 곳이 없으므로 주석 처리함
+        // 플레이어의 덱이 아닌 AI를 덱이 클릭되지 않게하려고 한 것으로 보이나 밑에 더 확실한 조건을 추가하고 주석 처리함
         /*
         if (CURRENT_PLAYER.type != Playertype.human)
             return;
         */
+        
         if (phase == TurnPhase.waiting)
             return;
 
@@ -386,10 +418,13 @@ public class KilltheKing : MonoBehaviour
             Utils.tr("KilltheKing:CardClicked()", "Play", tCB.name,
             targetCards[0].name + " is target");
             phase = TurnPhase.waiting;
+
+            // 효과음 재생
             clip2.Play();
         }
     }
 
+    // A가 K를 이길 수 있도록 하는 조건 중 하나
     public bool diff()
     {
         int diff = Mathf.Abs(targetCards[0].rank - targetCards[1].rank);
@@ -404,8 +439,12 @@ public class KilltheKing : MonoBehaviour
 
     public bool CheckGameOver()
     {
+
+        // targetCards[0] = 플레이어, targetCards[1] = AI
+        
         if (targetCards[0] != null && targetCards[1] != null)
         {
+            // A와 K가 선택되었을 때 승패판정
             if (targetCards[0].rank == 1 && diff())
             {
                 CURRENT_PLAYER.type = Playertype.human;
@@ -424,6 +463,7 @@ public class KilltheKing : MonoBehaviour
                 return true;
             }
 
+            // 기존 숫자 크기 비교 승패판정
             if (targetCards[0].rank > targetCards[1].rank)
             {
                 CURRENT_PLAYER.type = Playertype.human;
