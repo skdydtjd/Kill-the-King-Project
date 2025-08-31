@@ -27,6 +27,7 @@ public class GameOverUI : MonoBehaviour
         if (KilltheKing.CURRENT_PLAYER == null) 
             return;
 
+        // 승패 판정 시 포인트 계산, 출력 문구 (플레이어 승리 시)
         if (KilltheKing.CURRENT_PLAYER.type == Playertype.human && gameOver == false)
         {
             KilltheKing.Point2 -= 20;
@@ -48,7 +49,7 @@ public class GameOverUI : MonoBehaviour
 
             gameOver = true;
         }
-        else if (KilltheKing.CURRENT_PLAYER.type == Playertype.ai && gameOver == false)
+        else if (KilltheKing.CURRENT_PLAYER.type == Playertype.ai && gameOver == false) // AI 승리 시
         {
             KilltheKing.Point1 -= 20;
 
