@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// 원본 그대로 참고
-
 public class Deck : MonoBehaviour
 {
     [Header("Set Dynamically")]
