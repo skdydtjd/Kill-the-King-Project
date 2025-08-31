@@ -8,6 +8,7 @@ public class GameOverUI : MonoBehaviour
 {
     public Text txt;
 
+    // 매 라운드 진행 시 포인트가 Update에 의해 중복 계산 되지않도록 gameover 변수 추가
     bool gameOver = false;  
 
     void Awake()
