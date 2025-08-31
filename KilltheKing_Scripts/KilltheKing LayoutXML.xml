@@ -12,4 +12,5 @@
 	<slot type="hand" x="0" y="-9" rot="0" player="1" layer="3"/>
 	<slot type="hand" x="0" y="9" rot="180" player="2" layer="3"/>
 </xml>
-	
+
+// 카드 배치 위치 및 레이어 변경
