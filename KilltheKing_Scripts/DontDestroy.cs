@@ -31,7 +31,6 @@ public class DontDestroy : MonoBehaviour
 // 속성 창 AudioClip에 배경음 리소스를 할당
 
 // 항상 플레이 되고 있어야 하므로 play on awake, 노래가 끝나면 반복되도록 loop를 체크
-
 // (보통 AudioSource 컴포넌트를 추가하면 play on awak는 항상 체크되어 있음)
 
 // KilltheKing에 있는 여러 효과음 들은 play on awake, loop를 모두 체크해제하고 조건을 만족할 시에만 나오게 함
