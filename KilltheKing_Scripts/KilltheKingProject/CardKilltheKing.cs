@@ -16,6 +16,7 @@ public enum CardState
     idle
 }
 
+// 기존 Bartok으로 되어있던 변수 이름들을 KilltheKing변수에 맞게 이름 변경
 public class CardKilltheKing : Card
 {
     static public float MOVE_DURATION = 0.5f;
@@ -49,6 +50,7 @@ public class CardKilltheKing : Card
         state = CardState.to;
     }
 
+    // 덱을 분배 또는 정해진 위치로 이동 시킬 때 Bartok과 달리 회전 매개변수는 필요치 않으므로 제거
     public void MoveTo(Vector3 ePos)
     {
         Move(ePos, Quaternion.identity);
