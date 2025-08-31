@@ -36,6 +36,7 @@ public class LayoutKilltheKing : MonoBehaviour
     public SlotDefKilltheKing drawPile;
     public SlotDefKilltheKing discardPile;
 
+    // 변경하였던 Layout XML의 target 데이터를 읽어와서 할당할 객체 선언
     public SlotDefKilltheKing target1;
     public SlotDefKilltheKing target2;
 
@@ -85,11 +86,11 @@ public class LayoutKilltheKing : MonoBehaviour
                     discardPile = tSD;
                     break;
 
-                case "target1":
+                case "target1": // target 읽어오기 (플레이어)
                     target1 = tSD;
                     break;
 
-                case "target2":
+                case "target2": // target 읽어오기 (AI)
                     target2 = tSD;
                     break;
 
