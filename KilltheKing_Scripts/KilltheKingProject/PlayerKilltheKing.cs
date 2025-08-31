@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 상태 변수 추가
 public enum Playertype
 {
     human,
@@ -44,6 +45,7 @@ public class PlayerKilltheKing
         return cardKilltheKing;
     }
 
+    // 덱 모양 변경
     public void Fanhand()
     {
         Vector3 pos;
@@ -65,11 +67,12 @@ public class PlayerKilltheKing
 
             hand[i].faceUp = (type == Playertype.human);
 
+            // 4에서 2로 낮춤
             hand[i].eventualSortOrder = i * 2;
         }
     }
 
-    // 카드 합이 적을 시 한 장 바꾸기
+    // 카드 합이 적을 시 한 장 바꾸기 (AI)
     public void AICardChanging()
     {
         Utils.tr("ChangeCard");
@@ -100,6 +103,7 @@ public class PlayerKilltheKing
         cg.callbackPlayer = this;
     }
 
+    // (플레이어)
     public void PlayerCardChanging()
     {
         Utils.tr("ChangeCard");
@@ -143,6 +147,7 @@ public class PlayerKilltheKing
 
         List<CardKilltheKing> validCards = new List<CardKilltheKing>();
 
+        // AI TakeTurn 새로 만든 조건으로 변경
         foreach (var tCB in hand)
         {
             if (KilltheKing.S.ValidPlay(tCB))
@@ -157,6 +162,8 @@ public class PlayerKilltheKing
         KilltheKing.S.TargettoAi(cb);
 
         cb.callbackPlayer = this;
+
+        //
     }
 
     public void CBCallback(CardKilltheKing tCB)
