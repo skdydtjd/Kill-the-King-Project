@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 배경음을 위한 스크립트 추가
 public class DontDestroy : MonoBehaviour
 {
     private GameObject[] musics;
