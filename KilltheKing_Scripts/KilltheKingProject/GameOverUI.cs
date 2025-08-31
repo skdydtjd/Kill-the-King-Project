@@ -8,6 +8,7 @@ public class GameOverUI : MonoBehaviour
 {
     public Text txt;
 
+    // 매 라운드 진행 시 포인트가 Update에 의해 중복 계산 되지않도록 gameover 변수 추가
     bool gameOver = false;  
 
     void Awake()
@@ -27,6 +28,7 @@ public class GameOverUI : MonoBehaviour
         if (KilltheKing.CURRENT_PLAYER == null) 
             return;
 
+        // 승패 판정 시 포인트 계산, 출력 문구 (플레이어 승리 시)
         if (KilltheKing.CURRENT_PLAYER.type == Playertype.human && gameOver == false)
         {
             KilltheKing.Point2 -= 20;
@@ -48,7 +50,7 @@ public class GameOverUI : MonoBehaviour
 
             gameOver = true;
         }
-        else if (KilltheKing.CURRENT_PLAYER.type == Playertype.ai && gameOver == false)
+        else if (KilltheKing.CURRENT_PLAYER.type == Playertype.ai && gameOver == false) // AI 승리 시
         {
             KilltheKing.Point1 -= 20;
 

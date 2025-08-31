@@ -7,7 +7,7 @@ public class Card : MonoBehaviour
     [Header("Set Dynamically")]
     public string suit;
 
-    // 모양에 따른 승패 판정을 결정할 변수
+    // 모양에 따른 승패 판정을 결정할 변수 추가
     public int StrongNumber;
 
     public int rank;

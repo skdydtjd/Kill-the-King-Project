@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+// 원본 그대로 참고
 
 /*
 <xml>
