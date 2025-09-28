@@ -1,6 +1,7 @@
 # Kill-the-King-Project
 
-# 2022-1 게임엔진 프로그래밍 I 프로젝트 Script 파일 (변경된 부분만)
+# 2022-1 게임엔진 프로그래밍 I 프로젝트 Script 파일 
+## (변경된 부분만)
 
 Card Game
 
