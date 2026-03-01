@@ -33,6 +33,7 @@ Unity 2022.3.62f1, 2D, WebGL, C#
 
 
 (1) 11개의 스크립트 파일
+
 ㆍUtils , PT_XMLReader , Card, Deck 4개의 스크립트 파일은 Bartok 프로젝트에서 그대로 사용했다.
 
 ㆍTurnLight 스크립트 파일은 이름만 KilltheKing으로 변경해서 사용했다.
@@ -42,6 +43,7 @@ Unity 2022.3.62f1, 2D, WebGL, C#
 ㆍDontDestroy 스크립트 파일 직접 추가했다.
 
 (2) 2개의 XML 파일
+
 ㆍDeckXML 파일은 Bartok에서 그대로 가져와서 사용했다.
 
 ㆍKilltheKing Layout XML 파일은 Bartok Layout XML를 변경해서 추가했다.
