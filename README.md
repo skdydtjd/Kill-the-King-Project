@@ -34,7 +34,9 @@ Unity 2022.3.62f1, 2D, WebGL, C#
 
 (1) 11개의 스크립트 파일
 
-ㆍUtils , PT_XMLReader , Card, Deck 4개의 스크립트 파일은 Bartok 프로젝트에서 그대로 사용했다.
+ㆍUtils , PT_XMLReader 2개의 스크립트 파일은 Bartok 프로젝트에서 그대로 사용했다.
+
+ㆍCard 스크립트 파일엔 카드 문양별로 우선순위를 저장할 변수를 추가했으며 Deck 파일엔 문양을 나타내는 변수에 따라 우선순위 달라지도록 코드를 추가했다.
 
 ㆍTurnLight 스크립트 파일은 이름만 KilltheKing으로 변경해서 사용했다.
 
