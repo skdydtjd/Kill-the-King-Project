@@ -88,4 +88,4 @@ https://play.unity.com/en/games/ee8e3029-8856-4ab7-b5d4-afe22836d6e4/kill-the-ki
 
 ## 참고용 Bartok 완성본 (플레이 링크)
 
-https://play.unity.com/ko/games/890a789c-9840-4475-98f1-a65b2bebd830/bartok220517
+https://play.unity.com/ko/games/3c3fda9e-d865-4602-891a-af887bb19661/bartok220517
