@@ -31,6 +31,7 @@ Unity 2022.3.62f1, 2D, WebGL, C#
 
 덱 및 카드 배치 Layout, 배경음 및 효과음 적용, UI, 턴제 재정리, 승패 판정, 카드 한 장 바꾸기 룰, 포인트 시스템 등
 
+
 (1) 11개의 스크립트 파일
 ㆍUtils , PT_XMLReader , Card, Deck 4개의 스크립트 파일은 Bartok 프로젝트에서 그대로 사용했다.
 
