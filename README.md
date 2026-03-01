@@ -31,6 +31,20 @@ Unity 2022.3.62f1, 2D, WebGL, C#
 
 덱 및 카드 배치 Layout, 배경음 및 효과음 적용, UI, 턴제 재정리, 승패 판정, 카드 한 장 바꾸기 룰, 포인트 시스템 등
 
+(1) 11개의 스크립트 파일
+ㆍUtils , PT_XMLReader , Card, Deck 4개의 스크립트 파일은 Bartok 프로젝트에서 그대로 사용했다.
+
+ㆍTurnLight 스크립트 파일은 이름만 KilltheKing으로 변경해서 사용했다.
+
+ㆍKilltheKing, PlayerKilltheKing, LayoutKilltheKing, CardKilltheKing, GameOverUI 스크립트 파일은 각각 Bartok 프로젝트에서 Bartok, Player, LayoutBartok, CardBartok, GameOverUI를 변경 및 추가했다.
+
+ㆍDontDestroy 스크립트 파일 직접 추가했다.
+
+(2) 2개의 XML 파일
+ㆍDeckXML 파일은 Bartok에서 그대로 가져와서 사용했다.
+
+ㆍKilltheKing Layout XML 파일은 Bartok Layout XML를 변경해서 추가했다.
+
 # 초기 개발 배경
 KILL THE KING 프로젝트는 '인디언 포커' , 'E 카드'  라는 게임을 착안해서 룰을 추가 / 수정하여 만들고자 하였다.
 
